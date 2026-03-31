@@ -38,4 +38,8 @@ def predict():
         return render_template('index.html', prediction_text=f"Error: {str(e)}")
 
 if __name__ == "__main__":
-    app.run(port=5500, debug=True)
+    import os
+    # Hugging Face expects port 7860
+    port = int(os.environ.get("PORT", 7860))
+    app.run(host='0.0.0.0', port=port)
+
